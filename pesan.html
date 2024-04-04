@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pesan</title>
+    <style>
+      /* Your CSS styles here */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+      }
+
+      .navbar {
+        background-color: #333;
+        overflow: hidden;
+      }
+
+      .navbar a {
+        float: left;
+        display: block;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 20px;
+        text-decoration: none;
+      }
+
+      .navbar a:hover {
+        background-color: #ddd;
+        color: black;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 20px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      h2 {
+        margin-top: 0;
+      }
+
+      .product-card {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .product-image {
+        flex: 0 0 100px;
+        margin-right: 20px;
+      }
+
+      .product-image img {
+        width: 100%;
+        height: auto;
+      }
+
+      .product-details {
+        flex: 1;
+      }
+
+      .product-name {
+        font-size: 18px;
+        margin: 0;
+      }
+
+      .product-price {
+        font-size: 16px;
+        color: #888;
+        margin: 5px 0;
+      }
+
+      .order-btn {
+        background-color: #4caf50;
+        color: #fff;
+        padding: 8px 16px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+
+      .order-btn:hover {
+        background-color: #45a049;
+      }
+
+      .order-summary {
+        margin-top: 20px;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 5px;
+      }
+
+      .order-summary h3 {
+        margin-top: 0;
+      }
+
+      #canvas {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navbar">
+      <a href=".dashboard.html">Dashboard</a>
+      <a href=".pesan.html">Pesanan</a>
+      <a href=".search.html">Produk</a>
+      <a href=".setting.html">Pengaturan</a>
+    </div>
+
+    <div class="container">
+      <h2>Order Now</h2>
+
+      <div class="product-card" id="product1">
+        <div class="product-image">
+          <img src="product1.svg" alt="Product 1" />
+        </div>
+        <div class="product-details">
+          <h3 class="product-name">Cola</h3>
+          <p class="product-price">$5</p>
+          <button class="order-btn" onclick="order('Cola', 5)">Order</button>
+        </div>
+      </div>
+
+      <div class="product-card" id="product2">
+        <div class="product-image">
+          <img src="product2.svg" alt="Product 2" />
+        </div>
+        <div class="product-details">
+          <h3 class="product-name">Sayur</h3>
+          <p class="product-price">$10</p>
+          <button class="order-btn" onclick="order('Sayur', 10)">Order</button>
+        </div>
+      </div>
+
+      <div class="product-card" id="product3">
+        <div class="product-image">
+          <img src="product3.svg" alt="Product 3" />
+        </div>
+        <div class="product-details">
+          <h3 class="product-name">Daging</h3>
+          <p class="product-price">$15</p>
+          <button class="order-btn" onclick="order('Daging', 15)">Order</button>
+        </div>
+      </div>
+
+      <!-- Add more product cards as needed -->
+
+      <div class="order-summary">
+        <h3>Order Summary</h3>
+        <p id="orderDetails"></p>
+        <p>Total: $<span id="totalPrice">0</span></p>
+        <button onclick="downloadNote()">Download Nota</button>
+      </div>
+    </div>
+
+    <canvas id="canvas" width="400" height="400"></canvas>
+
+    <script>
+      let totalPrice = 0;
+      let orderDetails = "";
+
+      function order(productName, price) {
+        // Increment total price by product price
+        totalPrice += price;
+
+        // Add ordered product to order details
+        orderDetails += `${productName}: $${price}\n`;
+
+        // Update total price on the page
+        document.getElementById("totalPrice").textContent = totalPrice;
+        document.getElementById("orderDetails").textContent = orderDetails;
+      }
+
+      function downloadNote() {
+        const canvas = document.getElementById("canvas");
+        const context = canvas.getContext("2d");
+
+        // Draw background
+        context.fillStyle = "#fff";
+        context.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Draw brand name
+        context.font = "24px Arial";
+        context.fillStyle = "#FF5733"; // Orange color
+        context.fillText("Toko Si Kabayan", 20, 40);
+
+        // Draw order summary
+        context.font = "16px Arial";
+        context.fillStyle = "#333"; // Dark gray color
+        context.fillText("Order Summary", 20, 80);
+
+        // Draw order details
+        const orderDetailsText = orderDetails.split("\n");
+        let yOffset = 110;
+        orderDetailsText.forEach((detail) => {
+          context.fillText(detail, 20, yOffset);
+          yOffset += 25;
+        });
+
+        // Draw total price
+        context.fillText(`Total: $${totalPrice}`, 20, yOffset + 25);
+
+        // Convert canvas to image
+        const image = canvas.toDataURL("image/png");
+
+        // Download image
+        const link = document.createElement("a");
+        link.href = image;
+        link.download = "nota.png";
+        link.click();
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registrasi</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f9f9f9;
+        margin: 0;
+        padding: 0;
+      }
+
+      .navbar {
+        background-color: #ff5733;
+        overflow: hidden;
+        text-align: center;
+      }
+
+      .navbar a {
+        display: inline-block;
+        color: #fff;
+        text-decoration: none;
+        padding: 14px 20px;
+      }
+
+      .navbar a:hover {
+        background-color: #ff8c66;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 20px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      }
+
+      h2 {
+        margin-top: 0;
+        text-align: center;
+        color: #333;
+        font-size: 28px;
+        margin-bottom: 20px;
+      }
+
+      .product-list {
+        list-style-type: none;
+        padding: 0;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+
+      .product-item {
+        margin: 10px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: calc(25% - 20px);
+        text-align: center;
+        transition: transform 0.3s ease;
+      }
+
+      .product-item:hover {
+        transform: translateY(-5px);
+      }
+
+      .product-image svg {
+        width: 100px;
+        height: 100px;
+        fill: #ff5733;
+        margin-bottom: 10px;
+      }
+
+      .product-name {
+        font-weight: bold;
+        color: #333;
+        font-size: 20px;
+        margin-bottom: 5px;
+      }
+
+      .product-description {
+        color: #666;
+        font-size: 16px;
+      }
+
+      .add-product-btn {
+        background-color: #ff5733;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        display: block;
+        margin: 20px auto;
+        font-size: 18px;
+        transition: background-color 0.3s ease;
+      }
+
+      .add-product-btn:hover {
+        background-color: #ff8c66;
+      }
+      .form-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+      }
+
+      .form-table th,
+      .form-table td {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+        text-align: left;
+      }
+
+      .form-table th {
+        background-color: #f2f2f2;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #333;
+      }
+
+      .form-input {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      .register-btn {
+        background-color: #ff5733;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .register-btn:hover {
+        background-color: #ff8c66;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navbar">
+      <a href="#">Dashboard</a>
+      <a href="#">Pesanan</a>
+      <a href="#">Produk</a>
+      <a href="#">Pengaturan</a>
+    </div>
+
+    <div class="container">
+      <h2>Registrasi Akun</h2>
+      <form id="registration-form">
+        <table class="form-table">
+          <tr>
+            <th><label for="username">Username:</label></th>
+            <td><input type="text" id="username" name="username" class="form-input" placeholder="Username..." /></td>
+          </tr>
+          <tr>
+            <th><label for="password">Password:</label></th>
+            <td><input type="password" id="password" name="password" class="form-input" placeholder="Password..." /></td>
+          </tr>
+          <tr>
+            <th><label for="birthdate">Tanggal Lahir:</label></th>
+            <td><input type="date" id="birthdate" name="birthdate" class="form-input" /></td>
+          </tr>
+          <tr>
+            <th><label for="phone">Nomor Telepon:</label></th>
+            <td><input type="tel" id="phone" name="phone" class="form-input" placeholder="Nomor Telepon..." /></td>
+          </tr>
+        </table>
+        <button type="submit" class="register-btn">Daftar</button>
+      </form>
+
+      <h3>Gambar Member</h3>
+      <div id="member-image">
+        <!-- Teks "Member" akan ditambahkan ke gambar ini -->
+      </div>
+
+      <button id="download-btn">Download Gambar</button>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const registrationForm = document.getElementById("registration-form");
+        const downloadBtn = document.getElementById("download-btn");
+        const memberImage = document.getElementById("member-image");
+
+        // Event listener untuk pengiriman formulir pendaftaran
+        registrationForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          const userData = {
+            username: document.getElementById("username").value,
+            password: document.getElementById("password").value,
+            birthdate: document.getElementById("birthdate").value,
+            phone: document.getElementById("phone").value,
+          };
+          // Menambahkan teks "Member" ke gambar dan informasi pengguna
+          const imageSrc = generateMemberImage(userData);
+          memberImage.innerHTML = `<img src="${imageSrc}" alt="Member Image">`;
+        });
+
+        // Event listener untuk tombol download
+        downloadBtn.addEventListener("click", function () {
+          const memberImg = document.querySelector("#member-image img");
+          const canvas = document.createElement("canvas");
+          const context = canvas.getContext("2d");
+          canvas.width = memberImg.width;
+          canvas.height = memberImg.height;
+          context.drawImage(memberImg, 0, 0, memberImg.width, memberImg.height);
+          const a = document.createElement("a");
+          canvas.toBlob(function (blob) {
+            const url = URL.createObjectURL(blob);
+            a.href = url;
+            a.download = "member.png";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+          });
+        });
+
+        // Fungsi untuk menghasilkan gambar member dengan teks "Member" dan informasi pengguna
+        function generateMemberImage(userData) {
+          // Di sini Anda dapat menggunakan logika atau library tertentu untuk menghasilkan gambar dengan teks "Member" dan informasi pengguna yang diberikan
+          // Untuk tujuan contoh, saya hanya akan menggunakan URL gambar placeholder
+          // Anda dapat mengganti dengan logika atau sumber gambar sesuai kebutuhan Anda
+          const imageSrc = `https://via.placeholder.com/300?text=Member\nUsername: ${userData.username}\nPassword: ${userData.password}\nTanggal Lahir: ${userData.birthdate}\nNomor Telepon: ${userData.phone}`;
+          return imageSrc;
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Penjual</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f9f9f9;
+        margin: 0;
+        padding: 0;
+      }
+
+      .navbar {
+        background-color: #ff5733;
+        overflow: hidden;
+        text-align: center;
+      }
+
+      .navbar a {
+        display: inline-block;
+        color: #fff;
+        text-decoration: none;
+        padding: 14px 20px;
+      }
+
+      .navbar a:hover {
+        background-color: #ff8c66;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 20px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      }
+
+      h2 {
+        margin-top: 0;
+        text-align: center;
+        color: #333;
+        font-size: 28px;
+        margin-bottom: 20px;
+      }
+
+      .product-list {
+        list-style-type: none;
+        padding: 0;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+
+      .product-item {
+        margin: 10px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: calc(25% - 20px);
+        text-align: center;
+        transition: transform 0.3s ease;
+      }
+
+      .product-item:hover {
+        transform: translateY(-5px);
+      }
+
+      .product-image svg {
+        width: 100px;
+        height: 100px;
+        fill: #ff5733;
+        margin-bottom: 10px;
+      }
+
+      .product-name {
+        font-weight: bold;
+        color: #333;
+        font-size: 20px;
+        margin-bottom: 5px;
+      }
+
+      .product-description {
+        color: #666;
+        font-size: 16px;
+      }
+
+      .add-product-btn {
+        background-color: #ff5733;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        display: block;
+        margin: 20px auto;
+        font-size: 18px;
+        transition: background-color 0.3s ease;
+      }
+
+      .add-product-btn:hover {
+        background-color: #ff8c66;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navbar">
+      <a href=".dashboard.html">Dashboard</a>
+      <a href=".pesan.html">Pesanan</a>
+      <a href=".search.html">Produk</a>
+      <a href=".setting.html">Pengaturan</a>
+    </div>
+
+    <div class="container">
+      <h2>Selamat Datang di Dashboard Anda</h2>
+      <p>Ini adalah tempat di mana Anda dapat mengelola toko Anda, <strong>Toko Si Kabayan</strong>. Belanja murah hanya di Si Kabayan!</p>
+
+      <h3>Katalog Produk</h3>
+      <ul class="product-list">
+        <li class="product-item">
+          <div class="product-image">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path fill="none" d="M0 0h24v24H0z" />
+              <path d="M20 20H4V10h16v10zm0-12H4V4h16v4z" />
+            </svg>
+          </div>
+          <div class="product-details">
+            <h4 class="product-name">Daging</h4>
+            <p class="product-description">Daging sapi segar dan berkualitas.</p>
+          </div>
+        </li>
+        <li class="product-item">
+          <div class="product-image">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path fill="none" d="M0 0h24v24H0z" />
+              <path d="M12 18l-4-4h8z" />
+            </svg>
+          </div>
+          <div class="product-details">
+            <h4 class="product-name">Sayur</h4>
+            <p class="product-description">Sayuran segar dan organik.</p>
+          </div>
+        </li>
+        <li class="product-item">
+          <div class="product-image">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path fill="none" d="M0 0h24v24H0z" />
+              <path
+                d="M17.63 17.63l-1.96-1.96 2.54-2.54-1.41-1.41-2.54 2.54-1.96-1.96L13.07 9l-2.54 2.54-1.41-1.41 2.54-2.54L9 6.93 7.46 5.39l2.54-2.54L8.46.79 6.93 2.32 5.39.79 3.85 2.33l1.41 1.41L2.79 6.93l1.96 1.96L2.32 10.46l1.41 1.41 2.54-2.54 1.96 1.96L9 13.07l2.54-2.54 1.41 1.41-2.54 2.54 1.96 1.96 1.54-1.54v.12l2.55 2.54 1.41-1.41zm-5.66 3.43c-2.46 0-4.48-2.01-4.48-4.47s2.02-4.48 4.48-4.48 4.47 2.02 4.47 4.48-2.01 4.47-4.47 4.47z"
+              />
+            </svg>
+          </div>
+          <div class="product-details">
+            <h4 class="product-name">Cola</h4>
+            <p class="product-description">Minuman soda segar dan menyegarkan.</p>
+          </div>
+        </li>
+        <li class="product-item">
+          <div class="product-image">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path fill="none" d="M0 0h24v24H0z" />
+              <path d="M20 6.67V20H4V4h9.64l-2-2H4c-1.1 0-1.99.9-1.99 2L2 20c0 1.1.89 2 1.99 2H20c1.1 0 2-.9 2-2V8.67l-2-2zM12 4l5 5h-3v4h-4v-4H7l5-5zm-6 9h8v2H6v-2z" />
+            </svg>
+          </div>
+          <div class="product-details">
+            <h4 class="product-name">Pepsodent</h4>
+            <p class="product-description">Pasta gigi untuk gigi putih bersih.</p>
+          </div>
+        </li>
+      </ul>
+
+      <button class="add-product-btn">Tambah Produk</button>
+    </div>
+  </body>
+</html>

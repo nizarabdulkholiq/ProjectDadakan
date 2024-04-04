@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pencarian Produk</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f9f9f9;
+        margin: 0;
+        padding: 0;
+      }
+
+      .navbar {
+        background-color: #ff5733;
+        overflow: hidden;
+        text-align: center;
+      }
+
+      .navbar a {
+        display: inline-block;
+        color: #fff;
+        text-decoration: none;
+        padding: 14px 20px;
+      }
+
+      .navbar a:hover {
+        background-color: #ff8c66;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 20px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      }
+
+      h2 {
+        margin-top: 0;
+        text-align: center;
+        color: #333;
+        font-size: 28px;
+        margin-bottom: 20px;
+      }
+
+      .product-list {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      .product-item {
+        margin-bottom: 10px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .product-image svg {
+        width: 100px;
+        height: 100px;
+        fill: #ff5733;
+        margin-bottom: 10px;
+      }
+
+      .product-name {
+        font-weight: bold;
+        color: #333;
+        font-size: 20px;
+        margin-bottom: 5px;
+      }
+
+      .product-description {
+        color: #666;
+        font-size: 16px;
+      }
+
+      .search-form {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .search-input {
+        padding: 10px;
+        width: 60%;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+
+      .search-btn {
+        padding: 10px 20px;
+        background-color: #ff5733;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .search-btn:hover {
+        background-color: #ff8c66;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navbar">
+      <a href=".dashboard.html">Dashboard</a>
+      <a href=".pesan.html">Pesanan</a>
+      <a href=".search.html">Produk</a>
+      <a href=".setting.html">Pengaturan</a>
+    </div>
+
+    <div class="container">
+      <h2>Cari Produk</h2>
+      <div class="search-form">
+        <input type="text" class="search-input" placeholder="Cari produk..." />
+        <button class="search-btn">Cari</button>
+      </div>
+
+      <h3>Pencarian Populer</h3>
+      <div class="popular-searches">
+        <a href="#" class="search-link" data-keyword="Daging">Daging</a>
+        <a href="#" class="search-link" data-keyword="Sayur">Sayur</a>
+        <a href="#" class="search-link" data-keyword="Pepsodent">Pepsodent</a>
+        <a href="#" class="search-link" data-keyword="Cola">Cola</a>
+      </div>
+
+      <h3>Hasil Pencarian</h3>
+      <ul class="product-list" id="search-results">
+        <!-- Placeholder untuk hasil pencarian -->
+      </ul>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const searchLinks = document.querySelectorAll(".search-link");
+        const searchInput = document.querySelector(".search-input");
+        const searchResults = document.getElementById("search-results");
+
+        // Fungsi untuk menghasilkan data katalog acak
+        function generateRandomCatalog(keyword) {
+          const products = [];
+          for (let i = 1; i <= 5; i++) {
+            products.push({
+              name: keyword + " " + i,
+              price: Math.floor(Math.random() * 100) + 50, // Harga antara 50-150
+            });
+          }
+          return products;
+        }
+
+        // Fungsi untuk menampilkan hasil pencarian
+        function displaySearchResults(products) {
+          searchResults.innerHTML = ""; // Menghapus hasil sebelumnya
+          products.forEach((product) => {
+            const listItem = document.createElement("li");
+            listItem.classList.add("product-item");
+            listItem.innerHTML = `
+                    <div class="product-details">
+                        <h4 class="product-name">${product.name}</h4>
+                        <p class="product-description">Harga: Rp ${product.price}</p>
+                    </div>
+                `;
+            searchResults.appendChild(listItem);
+          });
+        }
+
+        // Event listener untuk setiap link pencarian
+        searchLinks.forEach((link) => {
+          link.addEventListener("click", function (e) {
+            e.preventDefault();
+            const keyword = this.dataset.keyword;
+            const products = generateRandomCatalog(keyword);
+            displaySearchResults(products);
+            searchInput.value = keyword;
+          });
+        });
+
+        // Event listener untuk tombol pencarian
+        document.querySelector(".search-btn").addEventListener("click", function () {
+          const keyword = searchInput.value.trim();
+          const products = generateRandomCatalog(keyword);
+          displaySearchResults(products);
+        });
+      });
+    </script>
+  </body>
+</html>
