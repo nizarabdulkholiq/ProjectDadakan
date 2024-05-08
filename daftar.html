@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pendaftaran</title>
+  <meta name="description" content="Pendaftaran aplikasi toko sembako untuk memulai bisnis Anda.">
+  <meta name="keywords" content="toko sembako, aplikasi, pendaftaran">
+  <!-- Favicons -->
+  <link href="sembako.svg" rel="icon">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      color: #333;
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+    }
+    .signup-container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+    }
+    .input-group {
+      margin-bottom: 15px;
+    }
+    .input-group input {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .signup-button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      width: 100%;
+    }
+    .signup-button:hover {
+      background-color: #45a049;
+    }
+    .signup-container h1 {
+      margin-top: 0;
+      text-align: center;
+    }
+    .signup-container a {
+      display: block;
+      text-align: center;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="signup-container">
+    <h1>Daftar User Toko Si Kabayan</h1>
+    <div class="input-group">
+      <input type="text" placeholder="Username" id="username">
+    </div>
+    <div class="input-group">
+      <input type="email" placeholder="Email" id="email">
+    </div>
+    <div class="input-group">
+      <input type="password" placeholder="Password" id="password">
+    </div>
+    <div class="input-group">
+      <input type="text" placeholder="Nomor Telepon" id="nomorTelepon">
+    </div>
+    <div class="input-group">
+      <input type="text" placeholder="Alamat" id="alamat">
+    </div>
+    <button type="submit" class="signup-button" onclick="daftar()">Daftar</button>
+    <a href="login.html">Sudah punya akun? Masuk</a>
+  </div>
+  <!-- SweetAlert2 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
+  <!-- Your custom JavaScript for signup functionality -->
+  <script>
+    function daftar() {
+      // Lakukan operasi pendaftaran di sini
+      // Misalnya, validasi input, kirim data ke server, dll.
+
+      // Setelah pendaftaran berhasil, tampilkan alert
+      Swal.fire({
+        icon: 'success',
+        title: 'Pendaftaran Berhasil!',
+        text: 'Terima kasih atas pendaftaran Anda.'
+      });
+
+      // Setelah alert ditampilkan, arahkan pengguna ke halaman lain
+      window.location.href = "dashboard.html";
+    }
+  </script>
+</body>
+</html>
